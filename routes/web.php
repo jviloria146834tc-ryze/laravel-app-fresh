@@ -6,6 +6,7 @@ use App\Models\Ideas;
 use App\Models\User;
 use App\Models\Post;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BookController;
 
 Route::view('/', 'welcome', [
     'greeting' => 'Hello, World!',
@@ -65,3 +66,6 @@ Route::post('/register', [UserController::class, 'store']);
 Route::get('/register/show/{user}', [UserController::class, 'show']);
 Route::patch('/register/update/{user}', [UserController::class, 'update']);
 Route::delete('/register/delete/{user}', [UserController::class, 'destroy']);
+
+// Books
+Route::resource('books', BookController::class);

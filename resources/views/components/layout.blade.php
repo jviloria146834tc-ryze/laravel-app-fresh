@@ -16,6 +16,7 @@
         <a href="/contact" class="px-3 py-2 hover:bg-gray-200 transition-colors duration-200">Contact</a>
         <a href="/posts" class="px-3 py-2 hover:bg-gray-200 transition-colors duration-200">Posts</a>
         <a href="/register" class="px-3 py-2 hover:bg-gray-200 transition-colors duration-200">User Registration</a>
+        <a href="{{ route('books.index') }}" class="px-3 py-2 hover:bg-gray-200 transition-colors duration-200">Book Management</a>
     </nav>
     <main class="min-h-[calc(100vh-60px)]">
         {{ $slot }}
