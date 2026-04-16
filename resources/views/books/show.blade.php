@@ -1,5 +1,5 @@
 <x-layout title="{{ $book->title }} | Details">
-    <div class="max-w-6xl mx-auto px-6 py-10">
+    <div class="max-w-6xl mx-auto px-6 pt-24 pb-10">
         
         <a href="{{ route('books.index') }}" class="text-blue-400 hover:text-blue-300 text-sm font-bold uppercase tracking-widest mb-6 inline-block">
             ← Back to Inventory

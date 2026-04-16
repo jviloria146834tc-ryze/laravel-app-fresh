@@ -40,9 +40,10 @@ class BookController extends Controller
     /**
      * Store a newly created resource in storage.
      */
+
     public function store(Request $request)
     {
-        $validated = $request->validate([
+    $validated = $request->validate([
         'title'          => 'required|string|max:255',
         'author'         => 'required|string|max:255',
         'description'    => 'required',
@@ -54,13 +55,21 @@ class BookController extends Controller
         'publisher'      => 'required',
         'price'          => 'required|numeric',
         'is_available'   => 'boolean',
-        ]);
+        'cover_image'    => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
 
-        $validated['is_available'] = $request->has('is_available');
+    $validated['is_available'] = $request->has('is_available');
 
-        Book::create($validated);
+    if ($request->hasFile('cover_image')) {
+        $path = $request->file('cover_image')->store('covers', 'public');
+        
+        $validated['cover_image'] = $path;
+    }
 
-        return redirect()->route('books.index')->with('success', 'Book added successfully!');
+  
+    Book::create($validated);
+
+    return redirect()->route('books.index')->with('success', 'Book and cover image added successfully!');
     }
 
     /**
@@ -84,7 +93,7 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        $validated = $request->validate([
+    $validated = $request->validate([
         'title'          => 'required|string|max:255',
         'author'         => 'required|string|max:255',
         'description'    => 'required',
@@ -96,14 +105,20 @@ class BookController extends Controller
         'publisher'      => 'required',
         'price'          => 'required|numeric',
         'is_available'   => 'boolean',
-        ]);
+        'cover_image'    => 'nullable|image|max:2048',
+    ]);
 
-        $validated['is_available'] = $request->has('is_available');
+    $validated['is_available'] = $request->has('is_available');
 
-        $book->update($validated);
-
-        return redirect()->route('books.index')->with('success', 'Book updated successfully!');
+    if ($request->hasFile('cover_image')) {
+        $validated['cover_image'] = $request->file('cover_image')->store('covers', 'public');
     }
+
+    $book->update($validated);
+
+    return redirect()->route('books.index')->with('success', 'Book updated successfully!');
+    }
+
 
     /**
      * Remove the specified resource from storage.

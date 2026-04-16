@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('publisher');
             $table->decimal('price', 8, 2);
             $table->boolean('is_available')->default(true);
+            $table->string('cover_image')->nullable();
             $table->timestamps();
         });
     }

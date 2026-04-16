@@ -10,7 +10,7 @@
             </h1>
         </div>
 
-        <form action="{{ route('books.update', $book->id) }}" method="POST" 
+        <form action="{{ route('books.update', $book->id) }}" method="POST" enctype="multipart/form-data"
               class="p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/[0.02] border border-white/10 shadow-2xl">
             @csrf
             @method('PUT')

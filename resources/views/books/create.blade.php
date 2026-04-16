@@ -23,7 +23,7 @@
         @endif
 
         <!-- Form Card -->
-        <form action="{{ route('books.store') }}" method="POST" 
+        <form action="{{ route('books.store') }}" method="POST" enctype="multipart/form-data"
               class="p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/[0.02] border border-white/10 shadow-2xl">
             @csrf
 
@@ -99,6 +99,14 @@
                     <input type="text" name="isbn" value="{{ old('isbn') }}" required class="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:border-amber-400 focus:outline-none transition-all">
                 </div>
 
+                <!-- Upload -->
+                <div class="md:col-span-2">
+                    <label class="block text-amber-300 text-xs font-bold uppercase mb-2 tracking-widest">Cover Image</label>
+                    <input type="file" name="cover_image" 
+                    class="w-full bg-white/5 border border-dashed border-white/20 rounded-xl px-4 py-8 text-blue-200 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-amber-400 file:text-amber-950 hover:file:bg-amber-300 transition-all">
+                </div>
+
+                <!-- Checkbox -->
                 <div class="md:col-span-2 flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10">
                     <input type="checkbox" name="is_available" id="is_available" value="1" {{ old('is_available', true) ? 'checked' : '' }} class="w-5 h-5 accent-amber-400 bg-transparent border-white/20 rounded">
                     <label for="is_available" class="text-amber-300 text-xs font-bold uppercase cursor-pointer"> This book is currently available in stock</label>
